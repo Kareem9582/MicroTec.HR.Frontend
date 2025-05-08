@@ -102,7 +102,8 @@ export class ListEmployeeComponent implements OnInit{
   getRequest(): EmployeeApiRequest {
     return {
       pageNumber: this.currentPage,
-      pageSize: this.pageSize
+      pageSize: this.pageSize, 
+      searchTerm:this.searchTerm
     };
   }
 
@@ -157,10 +158,10 @@ export class ListEmployeeComponent implements OnInit{
     this.loadEmployees();
   }
 
-  // Search handler
   onSearch(term: string) {
-    console.log('Search term:', term);
-    // Implement search
+    this.searchTerm = term;
+    this.currentPage = 1; // Reset to first page when searching
+    this.loadEmployees();
   }
 
   prepairActionButtons(){
