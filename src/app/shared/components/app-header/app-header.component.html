@@ -1,0 +1,22 @@
+  <section class="header-page bg-white py-4 border-b border-gray-200">
+    <div class="container-fluid px-4 mx-auto">
+      <div class="flex flex-wrap justify-between items-center">
+        <div class="w-full lg:w-auto mb-4 lg:mb-0">
+          <div class="company">
+            <a [routerLink]="logoLink">
+              <img [src]="logoUrl" [alt]="logoAlt" class="h-10">
+            </a>
+          </div>
+        </div>
+        <div class="w-full lg:w-auto">
+          <div class="flex space-x-4">
+            @for (icon of icons; track $index) {
+                <a href="#">
+                    <img [src]="icon.src" [alt]="icon.alt" class="h-6 w-6">
+                  </a>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

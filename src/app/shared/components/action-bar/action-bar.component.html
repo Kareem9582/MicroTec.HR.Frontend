@@ -1,0 +1,5 @@
+<div class="w-full lg:w-auto flex justify-end gap-3">
+    @for (button of buttons; track $index) {
+        <app-action-button [text]="button.text" [iconUrl]= "button.iconUrl" [variant]="button.variant" [description]="button.discription" [action]="button.action"></app-action-button>
+      }
+  </div>

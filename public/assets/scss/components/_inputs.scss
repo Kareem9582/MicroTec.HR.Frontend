@@ -1,0 +1,106 @@
+.form-switch {
+    
+  .form-check-input {
+    width: 36px;
+    height: 20px;
+    padding: 2px;
+    margin: 0;
+    margin-right: $spacing-8;
+    background-position: left center;
+    border-radius: 33px;
+    background-color: var(--controls-color-inactive-default, #737374);
+    background-image: url(../images/icons/switch-white.svg);
+    background-size: 16px 16px;
+    &:checked {
+      background-color: var(--controls-color-inactive-default, #1a90b0);
+      background-image: url(../images/icons/switch-white.svg);
+      background-size: 16px 16px;
+    }
+  }
+  label {
+    color: $text-primary-on-light;
+    font-family: Cairo;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%; /* 20px */
+  }
+}
+.form-check{
+    padding: 0;
+}
+.form-floating {
+  label {
+    color: $text-secondary-on-light !important;
+
+    /* body/b2: Regular */
+    font-family: Cairo;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%; /* 20px */
+  }
+  .form-control,
+  .form-select {
+    display: flex;
+    height: 46px;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+    color: $text-heading-on-light;
+
+    /* body/b2: Regular */
+    font-family: Cairo;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%; /* 20px */
+    outline: none;
+    box-shadow: none;
+    &:focus{
+        border: 1px solid var(--input-color-inactive-pressed, #737374);
+    }
+  }
+  .form-select{
+    background-image: url(../images/icons/arrow-downsvg.svg);
+    background-size: auto;
+  }
+}
+
+::placeholder {
+  color: $text-heading-on-light;
+}
+
+::-ms-input-placeholder {
+  /* Edge 12 -18 */
+  color: $text-heading-on-light;
+}
+
+.input-group{
+  .input-group-text{
+    height: 48px;
+    background-color: unset;
+    padding: 0;
+    
+    padding-left: 12px;
+    border-right: unset;
+    img{
+      width: 24px;
+      height: 24px;
+    }
+    &:focus{
+      border: 1px solid var(--input-color-inactive-pressed, #737374);
+
+    }
+  }
+  .form-floating {
+    .form-control{
+        border-left: 0;
+        &:focus{
+          border-left: 0;
+        }
+    }
+  }
+}

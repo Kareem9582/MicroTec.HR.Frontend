@@ -1,0 +1,14 @@
+<app-header></app-header>
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div class="workflow-page font-sans" *ngIf="!isLoading && employeeData">
+  <!-- Breadcrumb (keep your existing breadcrumb component) -->
+  <app-breadcrumb 
+    [title]="'View Employee - ' + (employeeData!.employeeCode || '')" 
+    [items]="breadcrumbItems"></app-breadcrumb>
+  <app-employee-form
+    [isViewMode]="true"
+    (formCancel)="onCancelClick()"
+    [employeeData]="employeeData"
+    >
+</app-employee-form>
+</div>

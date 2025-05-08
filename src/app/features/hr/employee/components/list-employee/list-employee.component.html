@@ -1,0 +1,110 @@
+<app-header></app-header>
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div class="workflow-page min-h-screen bg-gray-50">
+    <!-- Header Section -->
+
+  <app-breadcrumb [title]="pageTitle" [items]="breadcrumbItems"></app-breadcrumb>
+  
+    <!-- Main Content -->
+    <div class="container-fluid px-4 mx-auto py-6">
+      <!-- Action Bar -->
+      <div class="flex flex-wrap justify-between items-center mb-6 gap-4">
+        <app-search-bar></app-search-bar>
+        <app-action-bar [buttons]="actionButtons"></app-action-bar>
+      </div>
+  
+      <div class="bg-white shadow rounded-lg overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th *ngFor="let header of tableHeaders" 
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  {{ header }}
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <!-- Loading State -->
+              @if (isLoading) {
+                <tr *ngFor="let _ of [].constructor(3)">
+                  <td *ngFor="let _ of [].constructor(tableHeaders.length)" class="px-6 py-4">
+                    <div class="h-4 bg-gray-200 rounded animate-pulse"></div>
+                  </td>
+                </tr>
+              }
+              @else {
+                <!-- Data Rows -->
+                @for (employee of employees; track employee.id) {
+                  <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <p class="text-sm text-gray-900">{{ employee.employeeCode }}</p>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <p class="text-sm font-medium text-gray-900">{{ employee.fullName }}</p>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <p class="text-sm text-gray-500">
+                        {{ employee.birthDate | date:'yyyy-MM-dd' }}
+                      </p>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <p class="text-sm text-gray-500">{{ employee.age }} Years</p>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <p class="text-sm text-gray-500">{{ employee.nationality }}</p>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <p class="text-sm text-gray-500">{{ employee.gender }}</p>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <p class="text-sm text-gray-500">{{ employee.custodiesCount }}</p>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="actions flex space-x-2">
+                        <button 
+                          type="button" 
+                          (click)="viewEmployee(employee.id || '')"
+                          class="p-1 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100">
+                          <img src="assets/images/table/view.svg" class="h-5 w-5" alt="View">
+                        </button>
+                        <button 
+                          type="button" 
+                          (click)="editEmployee(employee.id || '')"
+                          class="p-1 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100">
+                          <img src="assets/images/table/edit.svg" class="h-5 w-5" alt="Edit">
+                        </button>
+                        <button 
+                          type="button" 
+                          (click)="deleteEmployee(employee.id || '', employee.fullName)"
+                          class="p-1 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100">
+                          <img src="assets/images/table/delete.svg" class="h-5 w-5" alt="Delete">
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                }
+                @empty {
+                  <tr>
+                    <td [colSpan]="tableHeaders.length" class="px-6 py-4 text-center text-sm text-gray-500">
+                      No employees found
+                    </td>
+                  </tr>
+                }
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+  
+      @if (totalItems > 0) {
+        <app-pagination
+          [totalItems]="totalItems"
+          [currentPage]="currentPage"
+          [itemsPerPage]="pageSize"
+          (pageChange)="onPageChange($event)"
+          (itemsPerPageChange)="onPageSizeChange($event)"
+        ></app-pagination>
+      }
+  </div>  
+</div>

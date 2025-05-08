@@ -1,0 +1,68 @@
+
+
+    <!-- Pagination Section - Paste this below your table -->
+    <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3">
+        <!-- Left side - Records info -->
+        <div class="text-sm text-gray-700">
+          Showing 
+          <span class="font-medium">{{((currentPage -1) * itemsPerPage) +1 }}</span>
+          to
+          <span class="font-medium">{{((currentPage -1) * itemsPerPage) + itemsPerPage }}</span>
+          of
+          <span class="font-medium">{{totalItems}}</span>
+          results
+        </div>
+    
+        <!-- Right side - Pagination controls -->
+        <div class="flex items-center space-x-4">
+          <!-- Rows per page dropdown -->
+          <div class="flex items-center">
+            <label for="itemsPerPage" class="mr-2 text-sm text-gray-700">Rows:</label>
+            <select
+              id="itemsPerPage"
+              class="rounded-md border border-gray-300 py-1 pl-2 pr-8 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              [ngModel]="itemsPerPage" 
+              (ngModelChange)="onItemsPerPageChange($event)"
+            >
+
+            @for (option of pageSizeOptions; track $index) {
+              <option [value]="option">{{option}}</option>
+            }
+            </select>
+          </div>
+    
+            <!-- Page navigation -->
+            <nav class="flex space-x-1">
+              <button
+              (click)="navigateToPage(currentPage - 1)"
+              [disabled]="currentPage === 1"
+                class="rounded-md px-3 py-1 text-sm text-gray-400 hover:bg-gray-100"
+              >
+                Previous
+              </button>
+              
+              @for (page of getVisiblePages(); track $index) {
+                @if (page === '...') {
+                  <span class="px-2 py-1 text-sm">...</span>
+                } @else {
+                  <button
+                    (click)="navigateToPage(page)"
+                    [class.bg-blue-50]="page === currentPage"
+                    class="rounded-md px-3 py-1 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    {{ page }}
+                  </button>
+                }
+              }
+              <span class="px-2 py-1 text-sm">...</span>
+              
+              <button
+                (click)="navigateToPage(currentPage + 1)"
+                [disabled]="currentPage === totalPages"
+                class="rounded-md px-3 py-1 text-sm text-gray-700 hover:bg-gray-100"
+              >
+                Next
+              </button>
+            </nav>
+          </div>
+        </div>

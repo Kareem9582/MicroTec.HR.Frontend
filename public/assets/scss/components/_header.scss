@@ -1,0 +1,13 @@
+.header-page{
+    padding-block: $spacing-16;
+    border-bottom: 1px solid  #E5F0FF;
+    background: $white-bg;
+    img{
+        width: auto;
+    }
+    .header-buttons{
+        display: flex;
+        gap: $spacing-16;
+        justify-content: end;
+    }
+}

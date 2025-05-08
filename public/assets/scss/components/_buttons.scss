@@ -1,0 +1,125 @@
+.btn {
+  display: flex;
+  width: 217.5px;
+  height: max-content;
+  padding: $spacing-12;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-8;
+  border-radius: $spacing-8;
+  background: $white-bg;
+  border: 1px solid transparent;
+  font-family: Cairo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 19.6px */
+  margin: 0;
+  outline: none;
+  box-shadow: none;
+  &:hover {
+    border: 1px solid transparent;
+  }
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+.btn-primary{
+  @extend .btn;
+  background: $primary-color-light;
+  border: 1px solid $primary-color-light;
+  color: $white-bg;
+  &:hover,
+  &:active {
+    background: $primary-color-light !important;
+    border: 1px solid $primary-color-light;
+    color: $white-bg;
+  }
+}
+
+
+.btn-primary-outline{
+  @extend .btn;
+  background: $white-bg;
+  border: 1px solid $primary-color-light;
+  color:$primary-color-light;
+  width: 100%;
+  &:hover,
+  &:active {
+    background: $white-bg !important;
+    border: 1px solid $primary-color-light;
+    color: $primary-color-light;
+  }
+}
+.btn-primary-text{
+  @extend .btn;
+  background: $white-bg;
+  border: 1px solid transparent;
+  color:$primary-color-light;
+  width: 100%;
+  &:hover,
+  &:active {
+    background: $white-bg !important;
+    border: 1px solid transparent;
+    color: $primary-color-light;
+  }
+}
+
+.btn-secondary{
+  @extend .btn;
+  border: 1px solid $buttons-secondary-default;
+  color: $text-heading-on-light;
+  background: $white-bg;
+  &:hover,
+  &:active {
+    color: $text-heading-on-light ;
+    border: 1px solid $buttons-secondary-default;
+    background: $white-bg !important;
+  }
+}
+
+.btn-close{
+  background: url(../images/icons/close.svg) no-repeat center center;
+  opacity: 1 !important;
+}
+
+
+.btn-danger-outline{
+  @extend .btn;
+  background: $white-bg;
+  border: 1px solid #CC3F2D;
+  color:#CC3F2D;
+  &:hover,
+  &:active {
+    background: $white-bg !important;
+    border: 1px solid #CC3F2D;
+    color: #CC3F2D;
+  }
+}
+
+.btn-danger-text{
+  @extend .btn;
+  background: $white-bg;
+  border: 1px solid transparent;
+  color:#CC3F2D;
+  &:hover,
+  &:active {
+    background: $white-bg !important;
+    border: 1px solid transparent;
+    color: #CC3F2D;
+  }
+}
+
+.btn-danger{
+  @extend .btn;
+  background: #CC3F2D;
+  border: 1px solid #CC3F2D;
+  color:$white-bg;
+  &:hover,
+  &:active {
+    background: $white-bg !important;
+    border: 1px solid #CC3F2D;
+    color: #CC3F2D;
+  }
+}

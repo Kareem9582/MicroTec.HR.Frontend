@@ -1,0 +1,27 @@
+.info-text {
+    display: flex;
+    gap: $spacing-4;
+    flex-direction: column;
+    margin-bottom: $spacing-12;
+    .label {
+      p {
+        color: $text-secondary-on-light;
+        font-family: Cairo;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 140%; /* 19.6px */
+      }
+    }
+    .info {
+      p {
+        color: $text-heading-on-light;
+        /* body/b2: Regular */
+        font-family: Cairo;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 125%; /* 20px */
+      }
+    }
+  }

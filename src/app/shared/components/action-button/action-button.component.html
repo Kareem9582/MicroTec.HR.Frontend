@@ -1,0 +1,9 @@
+<button type="button" 
+    class="flex items-center px-4 py-2 rounded-lg transition-colors"
+    [ngClass]="{
+        'border border-gray-300 text-gray-700 hover:bg-gray-50': variant === 'secondary',
+        'bg-blue-600 text-white hover:bg-blue-700': variant === 'primary'}"
+    (click)="handleClick()">
+    <img [src]="iconUrl" [alt]="description" class="mr-2 h-5 w-5">
+    {{text}}
+  </button>

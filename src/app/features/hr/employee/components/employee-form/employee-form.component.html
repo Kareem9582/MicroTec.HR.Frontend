@@ -1,0 +1,203 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form">
+  <!-- Main Card Section -->
+  <div class="main-card bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <!-- Main Information Section -->
+    <div class="mb-8">
+      <h4 class="text-lg font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-200">
+        Main Information
+      </h4>
+     
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <!-- Employee Code -->
+        <div class="flex flex-col">
+          <div class="relative">
+            <input 
+              type="text" 
+              formControlName="employeeCode"
+              id="employeeCode"
+              class="w-full pt-[26px] px-[12px] pb-[10px] border border-gray-300 rounded-md peer bg-gray-100"
+              placeholder=" " />
+            <label class="absolute left-[12px] top-[10px] text-gray-500 transition-all duration-200 
+                      peer-placeholder-shown:text-gray-400 peer-focus:-translate-y-2 peer-focus:scale-90 peer-focus:text-gray-600">
+              Employee Code
+            </label>
+          </div>
+        </div>
+        
+        <!-- Employee Name -->
+        <div class="flex flex-col">
+          <div class="relative">
+            <input 
+              type="text" 
+              formControlName="fullName"
+              class="w-full pt-[26px] px-[12px] pb-[10px] border border-gray-300 rounded-md peer" 
+              placeholder=" " />
+            <label class="absolute left-[12px] top-[10px] text-gray-500 transition-all duration-200 
+                    peer-placeholder-shown:text-gray-400 peer-focus:-translate-y-2 peer-focus:scale-90 peer-focus:text-gray-600">
+              Employee Name *
+            </label>
+          </div>
+        </div>
+      </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <!-- Birth Date -->
+          <div class="flex flex-col">
+            <div class="relative">
+              <input type="date"
+                    formControlName="birthDate"
+                    [min]="minDate | date:'yyyy-MM-dd'"
+                    [max]="maxDate | date:'yyyy-MM-dd'"
+                    class="w-full pt-[26px] px-[12px] pb-[10px] border border-gray-300 rounded-md peer" 
+                    placeholder=" " />
+              <label class="absolute left-[12px] top-[10px] text-gray-500 transition-all duration-200 
+                        peer-placeholder-shown:text-gray-400 peer-focus:-translate-y-2 peer-focus:scale-90 peer-focus:text-gray-600">
+                Birth Date *
+              </label>
+            </div>
+          </div>
+          
+          <!-- Age -->
+          <div class="flex flex-col">
+            <div class="relative">
+              <input type="text" 
+                    class="w-full pt-[26px] px-[12px] pb-[10px] border border-gray-300 rounded-md peer bg-gray-100"
+                    disabled
+                    [value]="employeeAge" />
+              <label class="absolute left-[12px] top-[10px] text-gray-500 transition-all duration-200 
+                        peer-placeholder-shown:text-gray-400">
+                Age
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Nationality -->
+            <div class="flex flex-col">
+              <div class="relative">
+                <select formControlName="nationality" 
+                  class="w-full pt-[26px] px-[12px] pb-[10px] border border-gray-300 rounded-md appearance-none bg-white pr-8">
+                  <option selected disabled></option>
+                  @for (nationality of nationalities; track $index) {
+                      <option [value]="nationality.id">{{nationality.name}}</option>
+                  }
+                </select>
+                <label class="absolute left-[12px] top-[10px] text-gray-500 transition-all duration-200 pointer-events-none">
+                  Nationality
+                </label>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          
+          <!-- Gender -->
+          <div class="flex flex-col">
+            <div class="relative">
+              <select formControlName="gender" 
+              class="w-full pt-[26px] px-[12px] pb-[10px] border border-gray-300 rounded-md appearance-none bg-white pr-8">
+                <option selected disabled></option>
+                @for (gender of genders; track gender) {
+                  <option [value]="gender">{{gender}}</option>
+                }
+              </select>
+              <label class="absolute left-[12px] top-[10px] text-gray-500 transition-all duration-200 pointer-events-none">
+                Gender
+              </label>
+              <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="divider border-t border-gray-200 my-6"></div>
+    
+    <!-- Custody Information Section -->
+    <div>
+      <h4 class="text-lg font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-200">
+        Custody Information
+      </h4>
+      
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Custody Code *
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Custody Name *
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Custody Description
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Assign Date *
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <!-- Sample rows (8 rows as in your example) -->
+            @for (item of [1,2,3,4,5,6,7,8]; track $index) {
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1001</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Mohamed Eid</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Custody Description</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1900-01-01</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <button type="button" class="text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-gray-100">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="mt-4">
+        <button type="button" class="inline-flex items-center px-4 py-2 border border-blue-500 text-blue-500 rounded-md hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+          </svg>
+          Add Line
+        </button>
+      </div>
+    </div>
+    
+    <!-- Divider -->
+    <div class="divider border-t border-gray-200 my-6"></div>
+    
+      <div class="flex justify-end space-x-3">
+    <button 
+      type="button" 
+      (click)="onCancel()"
+      class="flex items-center px-4 py-2 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500">
+      <img src="assets/images/icons/cancel.svg" alt="" class="mr-2 h-5 w-5" />
+      Cancel
+    </button>
+    <button 
+      *ngIf="!isViewMode"
+      type="submit" 
+      class="flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+      [disabled]="!employeeForm.valid" >
+      <img src="assets/images/icons/check.svg" alt="" class="mr-2 h-5 w-5" />
+      Save
+    </button>
+  </div>
+  </div>
+</form>

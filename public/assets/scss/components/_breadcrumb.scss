@@ -1,0 +1,36 @@
+.breadcrumb{
+    padding-block: $spacing-16;
+    border-bottom: 1px solid  #E5F0FF;
+    margin: 0;
+    background: $white-bg;
+    .breadcrumb-title{
+        color: $text-black;
+        font-family: Cairo;
+        font-size: 23px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%; /* 23px */
+        margin-bottom: $spacing-4;
+    }
+    .breadcrumb-items{
+        ul{
+            display: flex;
+            align-items: center;
+            gap: $spacing-8;
+            li{
+                color: $text-heading-on-light;
+                font-family: Cairo;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 140%; /* 19.6px */
+                &.active{
+                    color:$text-primary-on-light;
+                }
+                i{
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+}
