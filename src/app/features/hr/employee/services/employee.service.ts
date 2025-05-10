@@ -6,7 +6,7 @@ import { GetAllEmployeesApiResponse } from '../responses/getAllEmployees-api-res
 import { environment } from '@env/environment';
 import { EmployeeApiRequest } from '../requests/employee-api-request.model';
 import { Employee } from '../models/employee.model';
-import { GetEmployeeByIdApiResponse } from '../responses/getEmployeeById-api-response.model copy';
+import { GetEmployeeByIdApiResponse } from '../responses/getEmployeeById-api-response.model';
 
 @Injectable({ providedIn: 'root' })
 export class EmployeeService {

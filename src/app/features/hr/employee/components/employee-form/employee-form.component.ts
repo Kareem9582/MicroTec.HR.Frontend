@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Nationality } from '@hrfeatures/employee/models/nationality.model';
-import { GetEmployeeByIdApiResponse } from '@hrfeatures/employee/responses/getEmployeeById-api-response.model copy';
+import { GetEmployeeByIdApiResponse } from '@hrfeatures/employee/responses/getEmployeeById-api-response.model';
 import { NationalityService } from '@hrfeatures/employee/services/Nationality.service';
 import { AgeCalculatorService } from '@shared/utils/age-calculator.service';
 import { DateService } from '@shared/utils/date.service';
@@ -82,7 +82,7 @@ export class EmployeeFormComponent implements OnInit{
 
   private initializeForm(): void {
       this.employeeForm = this.fb.group({
-        employeeCode: [''], // Add this line
+        employeeCode: [{ value: '', disabled: true }], // Add this line
         fullName: ['', [Validators.required, Validators.maxLength(100)]],
         birthDate: [null, [Validators.required]],
         nationality: ['', Validators.required],

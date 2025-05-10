@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeFormComponent } from "../employee-form/employee-form.component";
-import { GetEmployeeByIdApiResponse } from '@hrfeatures/employee/responses/getEmployeeById-api-response.model copy';
+import { GetEmployeeByIdApiResponse } from '@hrfeatures/employee/responses/getEmployeeById-api-response.model';
 import { BreadcrumbComponent } from "@shared/components/breadcrumb/breadcrumb.component";
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '@hrfeatures/employee/services/employee.service';

@@ -1,5 +1,3 @@
-import { Employee } from "../models/employee.model";
-
 export interface GetEmployeeByIdApiResponse {
   id: string;
   employeeCode: string;

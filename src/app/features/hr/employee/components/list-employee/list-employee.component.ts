@@ -16,7 +16,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from '@shared/components/confirm-dialog/confirm-dialog.component';
 import { LoadingSpinnerComponent } from '@shared/components/loading-spinner/loading-spinner.component';
-import { GetEmployeeByIdApiResponse } from '@hrfeatures/employee/responses/getEmployeeById-api-response.model copy';
+import { GetEmployeeByIdApiResponse } from '@hrfeatures/employee/responses/getEmployeeById-api-response.model';
+import { CsvExportService } from '@shared/utils/csv-export.service';
 
 @Component({
   selector: 'app-list-employee',
@@ -56,7 +57,8 @@ export class ListEmployeeComponent implements OnInit{
    */
   constructor(
     private assetService: AssetsService, 
-    private employeeService: EmployeeService , 
+    private employeeService: EmployeeService ,
+    private csvExportService:CsvExportService, 
     private router: Router,
     private dialog: MatDialog,
     private snackBar: MatSnackBar) { }
@@ -88,15 +90,39 @@ export class ListEmployeeComponent implements OnInit{
     this.router.navigate(['/hr/createEmployee']);
   }
 
-  onCreateCanceled(): void {
-  }
-
   onEmployeeCreated(newEmployee: Employee): void {
     console.log('New employee created:', newEmployee);
     // Add to your employees array or call API service
   }
-  ExportData(){
-    console.log("Export Current Data");
+  // Update your ExportData method
+  ExportData(): void {
+    this.isLoading = true;
+
+    if (this.employees.length === 0) {
+      this.snackBar.open('No data to export', 'Close', { duration: 3000 });
+      return;
+    }
+
+    try {
+      // Prepare data for export
+      const exportData = this.employees.map(employee => ({
+        'Employee Code': employee.employeeCode,
+        'Full Name': employee.fullName,
+        'Birth Date': employee.birthDate,
+        'Age': employee.age,
+        'Nationality': employee.nationality,
+        'Gender': employee.gender,
+        'Custodies Count': employee.custodiesCount
+      }));
+    
+        const filename = `employees_${new Date().toISOString().slice(0,10)}.csv`;
+        this.csvExportService.exportToCsv(exportData, filename);
+      } catch (error) {
+        this.snackBar.open('Export failed', 'Close', { duration: 3000 });
+        console.error('Export error:', error);
+      } finally {
+        this.isLoading = false;
+    }
   }
   
   getRequest(): EmployeeApiRequest {

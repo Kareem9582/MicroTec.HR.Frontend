@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GetEmployeeByIdApiResponse } from '@hrfeatures/employee/responses/getEmployeeById-api-response.model copy';
+import { GetEmployeeByIdApiResponse } from '@hrfeatures/employee/responses/getEmployeeById-api-response.model';
 import { EmployeeService } from '@hrfeatures/employee/services/employee.service';
 import { AppHeaderComponent } from "@shared/components/app-header/app-header.component";
 import { LoadingSpinnerComponent } from "@shared/components/loading-spinner/loading-spinner.component";
