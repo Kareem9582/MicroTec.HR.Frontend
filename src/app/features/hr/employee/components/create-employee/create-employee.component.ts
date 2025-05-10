@@ -41,19 +41,10 @@ export class CreateEmployeeComponent {
       this.router.navigate(['/hr']);
     } 
 
-  onSubmit(employeeForm: FormGroup): void {
+  onSubmit(employee: Employee): void {
     this.isLoading = true;
-    if (employeeForm.valid) {
-      const formValue = employeeForm.value;
-      const newEmployee: Employee = {
-        employeeCode: formValue.employeeCode,
-        fullName: formValue.fullName,
-        birthDate: formValue.birthDate,
-        nationality: formValue.nationality,
-        gender: formValue.gender,
-        custodiesCount: 0 // Default value for new employee
-      };
-      this.employeeService.createEmployee(newEmployee).subscribe({
+    if (employee.valid) {
+      this.employeeService.createEmployee(employee).subscribe({
         next: () => {
           this.router.navigate(['/hr']);
         },
@@ -66,7 +57,7 @@ export class CreateEmployeeComponent {
         }
       });
     } else {
-      employeeForm.markAllAsTouched();
+      //Blank for now
     }
     this.isLoading = false;
   }

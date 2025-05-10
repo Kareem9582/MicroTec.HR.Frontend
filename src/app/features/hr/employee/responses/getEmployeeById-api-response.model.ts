@@ -1,3 +1,5 @@
+import { Custody } from "../models/custody.model";
+
 export interface GetEmployeeByIdApiResponse {
   id: string;
   employeeCode: string;
@@ -7,4 +9,5 @@ export interface GetEmployeeByIdApiResponse {
   nationalityId: string;
   gender: string;
   custodiesCount: number;
+  custodies: Custody[];
   }

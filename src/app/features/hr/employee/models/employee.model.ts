@@ -1,3 +1,5 @@
+import { Custody } from "./custody.model";
+
 export interface Employee {
     id?: string;
     employeeCode: string;
@@ -7,4 +9,6 @@ export interface Employee {
     nationality: string;
     gender: 'Male' | 'Female' | 'Other';
     custodiesCount: number;
+    custodies?:Custody[];
+    valid:boolean;
   }

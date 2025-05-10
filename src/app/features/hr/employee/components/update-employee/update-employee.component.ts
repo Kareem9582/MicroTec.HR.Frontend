@@ -44,6 +44,7 @@ export class UpdateEmployeeComponent implements OnInit{
         this.employeeData = response;
         this.updateBreadcrumb(response);
         this.isLoading = false;
+       
       },
       error: (err) => {
         console.error('Failed to load employee', err);
@@ -59,20 +60,10 @@ onCancelClick() {
   this.router.navigate(['/hr']);
 }
 
-onUpdateClick(employeeForm: FormGroup) {
+onUpdateClick(employee: Employee) {
   this.isLoading = true;
-      if (employeeForm.valid) {
-        const formValue = employeeForm.value;
-        const newEmployee: Employee = {
-          id: this.employeeData!.id,
-          employeeCode: formValue.employeeCode,
-          fullName: formValue.fullName,
-          birthDate: formValue.birthDate,
-          nationality: formValue.nationality,
-          gender: formValue.gender,
-          custodiesCount: 0 // Default value for new employee
-        };
-        this.employeeService.updateEmployee(newEmployee).subscribe({
+      if (employee.valid) {
+        this.employeeService.updateEmployee(employee).subscribe({
           next: () => {
             this.router.navigate(['/hr']);
           },
@@ -85,7 +76,6 @@ onUpdateClick(employeeForm: FormGroup) {
           }
         });
       } else {
-        employeeForm.markAllAsTouched();
       }
       this.isLoading = false;
 }

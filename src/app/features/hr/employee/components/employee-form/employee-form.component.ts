@@ -6,20 +6,25 @@ import { GetEmployeeByIdApiResponse } from '@hrfeatures/employee/responses/getEm
 import { NationalityService } from '@hrfeatures/employee/services/Nationality.service';
 import { AgeCalculatorService } from '@shared/utils/age-calculator.service';
 import { DateService } from '@shared/utils/date.service';
+import { CustodyTableComponent } from "../custody-table/custody-table.component";
+import { Custody } from '@hrfeatures/employee/models/custody.model';
+import { Employee } from '@hrfeatures/employee/models/employee.model';
 
 @Component({
   selector: 'app-employee-form',
-  imports: [ReactiveFormsModule , CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, CustodyTableComponent],
   templateUrl: './employee-form.component.html',
   styleUrl: './employee-form.component.scss', 
   standalone:true
 })
 export class EmployeeFormComponent implements OnInit{
+
   @Input() isViewMode:boolean = false;
   @Input() employeeData!: GetEmployeeByIdApiResponse;
-  @Output() formSubmit = new EventEmitter<FormGroup>();
+  @Output() formSubmit = new EventEmitter<Employee>();
   @Output() formCancel = new EventEmitter();
   
+  custodies: Custody[] = []; // Added to store custody data
   employeeForm!: FormGroup;
   genders: ('Male' | 'Female')[] = ['Male', 'Female'];
   minDate: Date;
@@ -47,14 +52,34 @@ export class EmployeeFormComponent implements OnInit{
   }
 
   onSubmit() {
-    this.formSubmit.emit(this.employeeForm);
+    if (this.employeeForm.valid) {
+      // Use getRawValue() to include disabled controls
+      const formValues = this.employeeForm.getRawValue();
+      
+      const employee: Employee = {
+        ...formValues,
+        birthDate: new Date(formValues.birthDate),
+        age: this.employeeAge ? parseInt(this.employeeAge) : undefined,
+        custodies: this.custodies, // Use the custodies array that's updated by onCustodiesChange
+        custodiesCount: this.custodies.length,
+        valid: true
+      };
+      
+      console.log('Submitting employee:', employee); // For debugging
+      this.formSubmit.emit(employee);
+    }
   }
 
   onCancel() {
     this.formCancel.emit();
   }
-  
+
+  onCustodiesChange(custodies: Custody[]) {
+    this.custodies = custodies
+    }
+
   ngOnChanges() {
+    
     if(this.employeeData)
     {
         // Convert the birthDate to the correct format for the input
@@ -67,7 +92,7 @@ export class EmployeeFormComponent implements OnInit{
           nationality: this.employeeData.nationalityId,
           gender: this.employeeData.gender
         });
-        
+        this.custodies = this.employeeData.custodies;
         if (this.isViewMode) {
           this.employeeForm.disable();
         }
@@ -99,6 +124,10 @@ export class EmployeeFormComponent implements OnInit{
 
   calculateAge(birthDate: Date): void {
     this.employeeAge = this.ageCalculator.calculateAge(birthDate);
+  }
+  get custodyData(): Custody[] {
+    // In a real implementation, you would get this from the custody table component
+    return this.custodies;
   }
 
   loadNationalities() {
