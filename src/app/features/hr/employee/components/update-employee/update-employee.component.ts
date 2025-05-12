@@ -44,7 +44,6 @@ export class UpdateEmployeeComponent implements OnInit{
         this.employeeData = response;
         this.updateBreadcrumb(response);
         this.isLoading = false;
-       
       },
       error: (err) => {
         console.error('Failed to load employee', err);
@@ -61,6 +60,7 @@ onCancelClick() {
 }
 
 onUpdateClick(employee: Employee) {
+  console.log(employee)
   this.isLoading = true;
       if (employee.valid) {
         this.employeeService.updateEmployee(employee).subscribe({

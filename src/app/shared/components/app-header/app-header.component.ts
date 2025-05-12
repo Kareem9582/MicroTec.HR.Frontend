@@ -36,9 +36,7 @@ export class AppHeaderComponent implements OnInit{
     ];
   }
   OpenApps(): void {
-    console.log("Apps Icon Pressed");
   }
   showNotifications(): void {
-    console.log("Notifications Icon Pressed");
   }
 }

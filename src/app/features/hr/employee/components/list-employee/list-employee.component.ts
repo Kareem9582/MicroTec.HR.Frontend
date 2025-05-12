@@ -91,7 +91,6 @@ export class ListEmployeeComponent implements OnInit{
   }
 
   onEmployeeCreated(newEmployee: Employee): void {
-    console.log('New employee created:', newEmployee);
     // Add to your employees array or call API service
   }
   // Update your ExportData method

@@ -1,6 +1,5 @@
-<app-header></app-header>
 <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-<div class="workflow-page font-sans" *ngIf="!isLoading && employeeData">
+<div class="main-page font-sans" *ngIf="!isLoading && employeeData">
 
   <app-breadcrumb 
     [title]="'View Employee - ' + (employeeData!.employeeCode || '')" 

@@ -26,15 +26,11 @@ export class CustodyTableComponent implements OnInit {
   }
   
   ngOnInit() {
-    
+    this.initializeCustodies();
+
     this.custodies.valueChanges.subscribe(() => {
       this.emitCustodies();
     });
-
-    // Initialize with at least one empty custody if none provided
-    if (this.custodies.length === 0) {
-      this.addCustody();
-    }
   }
 
   get custodies(): FormArray {
@@ -43,6 +39,23 @@ export class CustodyTableComponent implements OnInit {
 
   getCustodyControl(index: number, controlName: string): FormControl {
     return this.custodies.at(index).get(controlName) as FormControl;
+  }
+
+  private initializeCustodies() {
+    if (this.custodyData?.length > 0) {
+      this.custodyData.forEach(data => {
+        this.custodies.push(this.fb.group({
+          custodyCode: [{ value: data.custodyNumber, disabled: true }],
+          custodyName: [data.custodyName, Validators.required],
+          custodyDescription: [data.custodyDescription],
+          assignDate: [this.dateService.formatDateForInput(data.assignDate), Validators.required]
+        }));
+      });
+    } else {
+      this.addCustody();
+    }
+  
+    this.emitCustodies(); // optional, could defer to valueChanges
   }
 
   addCustody() {

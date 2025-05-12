@@ -58,6 +58,7 @@ export class EmployeeFormComponent implements OnInit{
       
       const employee: Employee = {
         ...formValues,
+        
         birthDate: new Date(formValues.birthDate),
         age: this.employeeAge ? parseInt(this.employeeAge) : undefined,
         custodies: this.custodies, // Use the custodies array that's updated by onCustodiesChange
@@ -65,7 +66,6 @@ export class EmployeeFormComponent implements OnInit{
         valid: true
       };
       
-      console.log('Submitting employee:', employee); // For debugging
       this.formSubmit.emit(employee);
     }
   }
@@ -86,6 +86,7 @@ export class EmployeeFormComponent implements OnInit{
       const formattedBirthDate = this.dateService.formatDateForInput(this.employeeData.birthDate);
       if (this.employeeData) {
         this.employeeForm.patchValue({
+          id:this.employeeData.id,
           employeeCode: this.employeeData.employeeCode,
           fullName: this.employeeData.fullName,
           birthDate: formattedBirthDate,
@@ -107,6 +108,7 @@ export class EmployeeFormComponent implements OnInit{
 
   private initializeForm(): void {
       this.employeeForm = this.fb.group({
+        id:[''],
         employeeCode: [{ value: '', disabled: true }], // Add this line
         fullName: ['', [Validators.required, Validators.maxLength(100)]],
         birthDate: [null, [Validators.required]],

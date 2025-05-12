@@ -12,7 +12,6 @@ export class ConfirmDialogComponent {
     public dialogRef: MatDialogRef<ConfirmDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { name: string }
   ) {
-    console.log(data);
   }
 
   onCancel(): void {

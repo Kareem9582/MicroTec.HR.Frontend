@@ -41,7 +41,6 @@ export class PaginationComponent {
    * @param page The target page number
    */
   navigateToPage(page: number | string): void {
-    console.log(page)
     if (typeof page === 'number' && 
         page >= 1 && 
         page <= this.totalPages && 
