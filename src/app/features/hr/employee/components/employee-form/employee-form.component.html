@@ -36,6 +36,9 @@
                     peer-placeholder-shown:text-gray-400 peer-focus:-translate-y-2 peer-focus:scale-90 peer-focus:text-gray-600">
               Employee Name *
             </label>
+            <small class="text-danger" *ngIf="employeeForm.get('fullName')?.touched && employeeForm.get('fullName')?.invalid">
+              Full name is required and must be less than 100 characters.
+            </small>
           </div>
         </div>
       </div>
@@ -54,6 +57,9 @@
                         peer-placeholder-shown:text-gray-400 peer-focus:-translate-y-2 peer-focus:scale-90 peer-focus:text-gray-600">
                 Birth Date *
               </label>
+              <small class="text-danger" *ngIf="employeeForm.get('birthDate')?.touched && employeeForm.get('birthDate')?.invalid">
+                Birth date is required. Must be between 18 and 65
+              </small>
             </div>
           </div>
           
@@ -86,6 +92,10 @@
                 <label class="absolute left-[12px] top-[10px] text-gray-500 transition-all duration-200 pointer-events-none">
                   Nationality
                 </label>
+                <small class="text-danger" *ngIf="employeeForm.get('nationality')?.touched && employeeForm.get('nationality')?.invalid">
+                  Nationality is required.
+                </small>
+
                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                   <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -107,6 +117,9 @@
               <label class="absolute left-[12px] top-[10px] text-gray-500 transition-all duration-200 pointer-events-none">
                 Gender
               </label>
+              <small class="text-danger" *ngIf="employeeForm.get('gender')?.touched && employeeForm.get('gender')?.invalid">
+                Gender is required.
+              </small>
               <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                 <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>

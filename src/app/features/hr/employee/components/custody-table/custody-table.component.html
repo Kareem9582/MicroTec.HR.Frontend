@@ -44,6 +44,7 @@
                 <input 
                   type="text"
                   [formControl]="getCustodyControl(i, 'custodyName')"
+                  (blur)="getCustodyControl(i, 'custodyName').markAsTouched()"
                   class="w-full pt-[26px] px-[12px] pb-[10px] border border-gray-300 rounded-md peer" 
                   placeholder=" "
                  />
@@ -51,6 +52,9 @@
                           peer-placeholder-shown:text-gray-400 peer-focus:-translate-y-2 peer-focus:scale-90 peer-focus:text-gray-600">
                   Custody Name
                 </label>
+                <small class="text-red-500 text-xs" *ngIf="getCustodyControl(i, 'custodyName').touched && getCustodyControl(i, 'custodyName').invalid">
+                  Custody Name is required.
+                </small>
               </div>
             </td>
             

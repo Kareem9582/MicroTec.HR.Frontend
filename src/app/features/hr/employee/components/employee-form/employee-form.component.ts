@@ -68,6 +68,9 @@ export class EmployeeFormComponent implements OnInit{
       
       this.formSubmit.emit(employee);
     }
+    else {
+      this.employeeForm.markAllAsTouched(); // <<< ADD THIS LINE
+    }
   }
 
   onCancel() {

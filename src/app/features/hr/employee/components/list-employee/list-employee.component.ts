@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppHeaderComponent } from "@shared/components/app-header/app-header.component";
 import { BreadcrumbComponent } from "@shared/components/breadcrumb/breadcrumb.component";
 import { SearchBarComponent } from "@shared/components/search-bar/search-bar.component";
 import { ActionBarComponent } from "@shared/components/action-bar/action-bar.component";
@@ -22,7 +21,7 @@ import { CsvExportService } from '@shared/utils/csv-export.service';
 @Component({
   selector: 'app-list-employee',
   standalone: true,
-  imports: [CommonModule, AppHeaderComponent, BreadcrumbComponent, SearchBarComponent, ActionBarComponent, PaginationComponent , LoadingSpinnerComponent ],
+  imports: [CommonModule, BreadcrumbComponent, SearchBarComponent, ActionBarComponent, PaginationComponent , LoadingSpinnerComponent ],
   templateUrl: './list-employee.component.html',
   styleUrl: './list-employee.component.scss'
 })

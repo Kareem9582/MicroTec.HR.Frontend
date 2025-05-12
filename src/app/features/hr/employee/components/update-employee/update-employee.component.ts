@@ -4,7 +4,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetEmployeeByIdApiResponse } from '@hrfeatures/employee/responses/getEmployeeById-api-response.model';
 import { EmployeeService } from '@hrfeatures/employee/services/employee.service';
-import { AppHeaderComponent } from "@shared/components/app-header/app-header.component";
 import { LoadingSpinnerComponent } from "@shared/components/loading-spinner/loading-spinner.component";
 import { BreadcrumbComponent } from "@shared/components/breadcrumb/breadcrumb.component";
 import { EmployeeFormComponent } from "../employee-form/employee-form.component";
@@ -13,7 +12,7 @@ import { Employee } from '@hrfeatures/employee/models/employee.model';
 
 @Component({
   selector: 'app-update-employee',
-  imports: [CommonModule, AppHeaderComponent, LoadingSpinnerComponent, BreadcrumbComponent, EmployeeFormComponent],
+  imports: [CommonModule, LoadingSpinnerComponent, BreadcrumbComponent, EmployeeFormComponent],
   templateUrl: './update-employee.component.html',
   styleUrl: './update-employee.component.scss'
 })

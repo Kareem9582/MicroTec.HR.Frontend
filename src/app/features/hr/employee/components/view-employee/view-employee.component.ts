@@ -6,12 +6,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '@hrfeatures/employee/services/employee.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoadingSpinnerComponent } from '@shared/components/loading-spinner/loading-spinner.component';
-import { AppHeaderComponent } from "@shared/components/app-header/app-header.component";
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-view-employee',
-  imports: [EmployeeFormComponent, BreadcrumbComponent, LoadingSpinnerComponent, AppHeaderComponent, CommonModule],
+  imports: [EmployeeFormComponent, BreadcrumbComponent, LoadingSpinnerComponent, CommonModule],
   templateUrl: './view-employee.component.html',
   styleUrl: './view-employee.component.scss'
 })

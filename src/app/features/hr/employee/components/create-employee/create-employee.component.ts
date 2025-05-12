@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { EmployeeService } from "@hrfeatures/employee/services/employee.service";
 import { Router } from "@angular/router";
 import { Employee } from "@hrfeatures/employee/models/employee.model";
-import { AppHeaderComponent } from "@shared/components/app-header/app-header.component";
 import { LoadingSpinnerComponent } from "@shared/components/loading-spinner/loading-spinner.component";
 import { CommonModule } from "@angular/common";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -13,7 +12,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-create-employee',
-  imports: [BreadcrumbComponent, EmployeeFormComponent, AppHeaderComponent, LoadingSpinnerComponent , CommonModule],
+  imports: [BreadcrumbComponent, EmployeeFormComponent, LoadingSpinnerComponent , CommonModule],
   templateUrl: './create-employee.component.html',
   styleUrl: './create-employee.component.scss', 
   standalone:true
