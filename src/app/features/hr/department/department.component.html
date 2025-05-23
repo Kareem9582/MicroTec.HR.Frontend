@@ -1,0 +1,81 @@
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div class="main-page min-h-screen bg-gray-50">
+
+  <!-- Breadcrumb Section -->
+  <app-breadcrumb [title]="pageTitle" [items]="breadcrumbItems"></app-breadcrumb>
+
+  <div class="container-fluid px-4 mx-auto py-6">
+
+    <!-- Action Bar -->
+    <div class="flex flex-wrap justify-between items-center mb-6 gap-4">
+      <app-search-bar (searchTermChanged)="onSearch($event)"></app-search-bar>
+      <app-action-bar [buttons]="actionButtons"></app-action-bar>
+      <button type="button" (click)="toggleAddForm()" class="bg-blue-500 text-white px-4 py-2 rounded">
+        {{ showAddForm ? 'Back to Table' : 'Add New Department' }}
+      </button>
+    </div>
+
+    <!-- Insert Form (Hidden until Add is clicked) -->
+    <div *ngIf="showAddForm" class="bg-white shadow rounded-lg overflow-hidden p-4 mb-6">
+      <h2 class="text-lg font-semibold mb-2">{{ isEditing ? 'Edit Department' : 'Add New Department' }}</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <input *ngIf="isEditing" type="text" [(ngModel)]="selectedDepartment.depCode" placeholder="Department Code"
+         class="border px-2 py-1 w-full" [disabled]="true" />
+  
+       
+        <input type="text" [(ngModel)]="selectedDepartment.name" placeholder="Department Name" class="border px-2 py-1 w-full"/>
+      </div>
+      <button type="button" (click)="saveDepartment()" class="mt-4 bg-green-500 text-white px-4 py-2 rounded">
+        {{ isEditing ? 'Update Department' : 'Add Department' }}
+      </button>
+    </div>
+
+    <!-- Table Container (Hidden when Add/Edit is active) -->
+    <div *ngIf="!showAddForm" class="bg-white shadow rounded-lg overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th *ngFor="let header of tableHeaders" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                {{ header }}
+              </th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr *ngIf="isLoading">
+              <td *ngFor="let _ of [].constructor(tableHeaders.length)" class="px-6 py-4">
+                <div class="h-4 bg-gray-200 rounded animate-pulse"></div>
+              </td>
+            </tr>
+
+            <!-- Data Rows -->
+            <tr *ngFor="let dept of departments" class="hover:bg-gray-50">
+              <td class="px-6 py-4 whitespace-nowrap">{{ dept.depCode }}</td>
+              <td class="px-6 py-4 whitespace-nowrap font-medium">{{ dept.name }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="actions flex space-x-2">
+                  <button type="button" (click)="editDepartment(dept)" class="p-1 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100">
+                    <img src="assets/images/table/edit.svg" class="h-5 w-5" alt="Edit">
+                  </button>
+                  <button type="button" (click)="confirmDelete(dept.id!)" class="p-1 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100">
+                    <img src="assets/images/table/delete.svg" class="h-5 w-5" alt="Delete">
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- No Data Message -->
+            <tr *ngIf="departments.length === 0">
+              <td [colSpan]="tableHeaders.length + 1" class="px-6 py-4 text-center text-sm text-gray-500">
+                No departments found
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+   
+  </div>  
+</div>

@@ -9,6 +9,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { EmployeeFormComponent } from './employee/components/employee-form/employee-form.component';
 import { ViewEmployeeComponent } from './employee/components/view-employee/view-employee.component';
 import { UpdateEmployeeComponent } from './employee/components/update-employee/update-employee.component';
+import { ListDepartmentComponent } from './department/list-department/list-department.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { UpdateEmployeeComponent } from './employee/components/update-employee/u
     ViewEmployeeComponent,
     UpdateEmployeeComponent,
     MatDialogModule,
-    MatSnackBarModule  // Import the standalone component here
+    MatSnackBarModule,
+    ListDepartmentComponent  // Import the standalone component here
   ]
 })
 export class HrModule { }
