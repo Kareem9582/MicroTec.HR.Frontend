@@ -28,7 +28,8 @@ import { ConfirmDialogComponent } from '@shared/components/confirm-dialog/confir
   imports: [
     CommonModule, FormsModule, RouterModule,
     BreadcrumbComponent, SearchBarComponent,
-    ActionBarComponent, LoadingSpinnerComponent  , PaginationComponent
+    ActionBarComponent, LoadingSpinnerComponent  ,
+     PaginationComponent
   ],
   providers: [DepartmentService]
 })
@@ -144,5 +145,18 @@ import { ConfirmDialogComponent } from '@shared/components/confirm-dialog/confir
     this.showDeleteConfirm = false;
     this.departmentToDelete = '';
   }
+
+  onPageChange(page: number) {
+    this.currentPage = page;
+    this.getDepartments();
+  }
+
+  onPageSizeChange(size: number) {
+    this.pageSize = size;
+    this.getDepartments();
+  }
+
+
+  //--------------
 
 }
